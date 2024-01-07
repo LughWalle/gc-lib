@@ -1,5 +1,8 @@
 import './global.css';
+import GlobalStyles from './styles/globalStyle.';
 import { StyledComponentsRegistry } from './registry';
+import { ThemeProvider } from 'styled-components';
+import theme from './styles/theme';
 
 export const metadata = {
   title: 'Welcome to demo2',
@@ -14,7 +17,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+        <StyledComponentsRegistry>
+          <GlobalStyles />
+          <ThemeProvider theme={theme}>
+
+            {children}
+          </ThemeProvider>
+        </StyledComponentsRegistry>
       </body>
     </html>
   );

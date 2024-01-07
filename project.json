@@ -55,6 +55,49 @@
       "options": {
         "lintFilePatterns": ["./src"]
       }
+    },
+    "storybook": {
+      "executor": "@nx/storybook:storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "./.storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@nx/storybook:build",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/gc-lib",
+        "configDir": "./.storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "test-storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "test-storybook -c ./.storybook --url=http://localhost:4400"
+      }
+    },
+    "static-storybook": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "gc-lib:build-storybook",
+        "staticFilePath": "dist/storybook/gc-lib"
+      },
+      "configurations": {
+        "ci": {
+          "buildTarget": "gc-lib:build-storybook:ci"
+        }
+      }
     }
   },
   "tags": []

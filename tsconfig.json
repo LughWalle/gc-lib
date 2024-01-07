@@ -46,6 +46,18 @@
     "src/**/*.spec.ts",
     "src/**/*.test.ts",
     "**e2e/**/*",
-    "dist/gc-lib/**/*"
+    "dist/gc-lib/**/*",
+    "**/*.stories.ts",
+    "**/*.stories.js"
+  ],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  },
+  "references": [
+    {
+      "path": "./tsconfig.storybook.json"
+    }
   ]
 }
